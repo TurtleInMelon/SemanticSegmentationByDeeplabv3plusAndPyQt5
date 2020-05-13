@@ -1,0 +1,15 @@
+python vis.py \
+    --logtostderr \
+    --vis_split="val" \
+    --model_variant="resnet_v1_101_beta" \
+    --vis_crop_size=1024,2048 \
+    --atrous_rates=6 \
+    --atrous_rates=12 \
+    --atrous_rates=18 \
+    --decoder_output_stride=4 \
+    --dataset="cityscapes" \
+    --colormap_type="cityscapes" \
+    --also_save_raw_predictions="False"\
+    --checkpoint_dir='/media/xzq/DA18EBFA09C1B27D/results/resNet101/exp/train200000' \
+    --vis_logdir='/media/xzq/DA18EBFA09C1B27D/results/resNet101/exp/vis' \
+    --dataset_dir='/home/xzq/data/cityscapes/tfrecord'
