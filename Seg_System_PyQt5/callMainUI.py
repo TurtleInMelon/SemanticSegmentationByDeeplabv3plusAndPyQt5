@@ -5,6 +5,7 @@ import sys
 import os
 from PyQt5 import QtCore, QtGui
 from PyQt5.Qt import *
+from PyQt5.QtGui import QPainter,QPixmap
 from PyQt5.QtWidgets import QProgressDialog
 from PyQt5.QtMultimedia import *
 from MainUI import Ui_MainWindow
@@ -25,9 +26,10 @@ modifymodel_pd_file_path = r"D:\pb文件\modify_model\frozen_inference_graph.pb"
 
 class MyMainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
-        super(MyMainWindow, self).__init__()
+        super(MyMainWindow, self).__init__(parent)
 
         self.setupUi(self)
+
         self.label.setStyleSheet('''QLabel{color:white;font-size:40px;font-family:幼圆;}
                                 }''')
         self.pushButton.setIcon(QIcon("./image/enter.ico"))
@@ -44,6 +46,11 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
                                       "QPushButton{border:2px}"
                                       "QPushButton{border-radius:10px}"
                                       "QPushButton{padding:2px 4px}")
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        pixmap = QPixmap("./image/landscape.jpg")
+        painter.drawPixmap(self.rect(), pixmap)
+
 
 class MyChooseFunction_Window(QWidget, ChooseFunction_Form):
     def __init__(self):
@@ -72,6 +79,10 @@ class MyChooseFunction_Window(QWidget, ChooseFunction_Form):
                                         "QPushButton{border:2px}"
                                         "QPushButton{border-radius:10px}"
                                         "QPushButton{padding:2px 4px}")
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        pixmap = QPixmap("./image/landscape2.jpg")
+        painter.drawPixmap(self.rect(), pixmap)
 
 class MyPictureSegmentation_Window(QWidget, PictureSegmentation_Form):
     def __init__(self):
@@ -113,6 +124,11 @@ class MyPictureSegmentation_Window(QWidget, PictureSegmentation_Form):
         self.lineEdit.setStyleSheet("QLineEdit{border-radius:5px}"
                                     "QLineEdit{color:black}")
         self.comboBox.setStyleSheet("QComboBox{border-radius:5px}")
+
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        pixmap = QPixmap("./image/landscape4.jpg")
+        painter.drawPixmap(self.rect(), pixmap)
 
 
     def open_picture(self):
@@ -238,6 +254,11 @@ class MyVideoSegmentation_Window(QWidget, VideoSegmentation_Form):
                                     "QLineEdit{color:black}")
         self.comboBox.setStyleSheet("QComboBox{border-radius:5px}")
 
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        pixmap = QPixmap("./image/landscape3.jpg")
+        painter.drawPixmap(self.rect(), pixmap)
+
     def playVideo(self):
         self.player.play()
 
@@ -318,6 +339,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon("./image/cartoon3.ico"))
     myWin = MyMainWindow()  # 主窗口
+
     myChooseFunctionWindow = MyChooseFunction_Window()  # 选择功能窗口
     myPictureSegmentationWindow = MyPictureSegmentation_Window()    # 图片分割窗口
     myVideoSegmentetionWindow = MyVideoSegmentation_Window()    # 视频分割窗口

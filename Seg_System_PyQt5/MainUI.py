@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
     def setupUi(self, Form):
-        Form.setObjectName("Ch")
+        Form.setObjectName("MainWindow")
         Form.resize(600, 400)
 
         self.pushButton = QtWidgets.QPushButton(Form)
